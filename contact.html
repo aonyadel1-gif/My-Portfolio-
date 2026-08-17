@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aony Adel - Contact</title>
+    <link rel="stylesheet" href="theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Readex+Pro:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 5%;
+            background: var(--surface);
+            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-2));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hire-btn {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-2));
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 8px 18px rgba(56, 189, 248, 0.2);
+        }
+
+        .hire-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(56, 189, 248, 0.28);
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-title {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .main-title h1 {
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            animation: fadeUp 0.7s ease both;
+            text-shadow: 0 10px 24px rgba(56, 189, 248, 0.12);
+        }
+
+        .main-title p {
+            color: var(--muted);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .divider {
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-2));
+            margin: 12px auto 16px;
+            border-radius: 2px;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 28px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border-color);
+            padding: 14px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            transition: transform 0.25s ease, color 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .info-item:hover .info-icon {
+            transform: rotate(6deg) scale(1.08);
+            color: var(--accent-color);
+        }
+
+        .info-text {
+            text-align: right;
+        }
+
+        .info-text label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-text span {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+            font-family: inherit;
+            font-weight: 600;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: rgba(56, 189, 248, 0.5);
+            background: rgba(15, 23, 42, 0.9);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-2));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 12px 28px rgba(56, 189, 248, 0.22);
+            letter-spacing: 0.01em;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-120%);
+            transition: transform 0.6s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 36px rgba(56, 189, 248, 0.28);
+        }
+
+        .submit-btn:hover::before {
+            transform: translateX(120%);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 14px 4%;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .hire-btn {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+
+            .container {
+                margin: 30px auto;
+                padding: 0 16px;
+            }
+
+            .main-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 22px;
+                margin-bottom: 22px;
+                border-radius: 16px;
+            }
+
+            .card-title {
+                font-size: 1.1rem;
+            }
+
+            .info-item {
+                gap: 12px;
+                padding: 12px 14px;
+                border-radius: 10px;
+            }
+
+            .form-group {
+                margin-bottom: 16px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                flex-wrap: wrap;
+                padding: 12px 3%;
+                gap: 10px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 8px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+
+            .hire-btn {
+                padding: 7px 12px;
+                font-size: 0.75rem;
+            }
+
+            .container {
+                margin: 24px auto;
+                padding: 0 12px;
+            }
+
+            .main-title h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-title p {
+                font-size: 0.9rem;
+            }
+
+            .card {
+                padding: 18px;
+                margin-bottom: 18px;
+                border-radius: 14px;
+            }
+
+            .card-title {
+                font-size: 1rem;
+            }
+
+            .info-item {
+                gap: 10px;
+                padding: 10px 12px;
+            }
+
+            .info-icon {
+                width: 36px;
+                height: 36px;
+                border-radius: 8px;
+                font-size: 0.9rem;
+            }
+
+            .info-text span {
+                font-size: 0.95rem;
+            }
+
+            .submit-btn {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Aony<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html" class="hire-btn">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="main-title">
+            <h1>Contact with Aony</h1>
+            <div class="divider"></div>
+            <p>Have a project in mind? Let's connect!</p>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">Contact Information</h2>
+            <div class="info-list">
+                <a class="info-item" href="mailto:aonyadel1@gmail.com">
+                    <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
+                    <div class="info-text">
+                        <label>Email</label>
+                        <span>aonyadel1@gmail.com</span>
+                    </div>
+                </a>
+
+                <a class="info-item" href="tel:01141955869">
+                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="info-text">
+                        <label>Phone</label>
+                        <span>01141955869</span>
+                    </div>
+                </a>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="info-text">
+                        <label>Faculty</label>
+                        <span>Business Information Systems</span>
+                    </div>
+                </div>
+
+                <a class="info-item" href="https://www.linkedin.com/in/aony-adel-8b6357357" target="_blank">
+                    <div class="info-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                    <div class="info-text">
+                        <label>LinkedIn</label>
+                        <span>Aony Adel</span>
+                    </div>
+                </a>
+
+                <a class="info-item" href="https://www.facebook.com/share/18vVpBsm2V/" target="_blank">
+                    <div class="info-icon"><i class="fa-brands fa-facebook-f"></i></div>
+                    <div class="info-text">
+                        <label>Facebook</label>
+                        <span>Aony Adel</span>
+                    </div>
+                </a>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info-text">
+                        <label>Location</label>
+                        <span>Assiut, Egypt</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">Send a Message</h2>
+            <form action="https://formsubmit.co/aonyadel1@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="New Contact Message from Website">
+
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input id="name" type="text" name="name" placeholder="Your Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input id="email" type="email" name="email" placeholder="Your Email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fa-regular fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="theme.js"></script>
+</body>
+</html>

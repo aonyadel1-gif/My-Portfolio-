@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects | Aony Adel</title>
+    <link rel="stylesheet" href="theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700;800&family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin: 0 auto;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero {
+            padding: 28px 30px 22px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(124, 58, 237, 0.05));
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.22);
+            flex-shrink: 0;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        .hero p {
+            color: var(--muted);
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 800;
+            color: #fff;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+            letter-spacing: 0.01em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-2));
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(56, 189, 248, 0.12);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .content {
+            padding: 30px;
+            display: grid;
+            gap: 24px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .project-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.24);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(124, 58, 237, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.1);
+        }
+
+        .project-title {
+            flex: 1;
+        }
+
+        .project-title h2 {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+            color: var(--text-color);
+            font-weight: 800;
+        }
+
+        .project-date {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .project-description {
+            color: var(--muted);
+            line-height: 1.8;
+            font-weight: 600;
+        }
+
+        .project-technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.24);
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .tech-badge i {
+            font-size: 0.9rem;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.24);
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            background: rgba(56, 189, 248, 0.16);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 800;
+        }
+
+        .section-title p {
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 24px 26px;
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-weight: 700;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                border-radius: 20px;
+            }
+
+            .hero {
+                padding: 22px 20px 18px;
+            }
+
+            .hero-top {
+                gap: 12px;
+            }
+
+            .badge {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+
+            .btn {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+
+            .hero-actions {
+                margin-top: 16px;
+                gap: 8px;
+            }
+
+            .content {
+                padding: 20px;
+                gap: 18px;
+            }
+
+            .projects-grid {
+                gap: 18px;
+            }
+
+            .project-card {
+                padding: 20px;
+                border-radius: 16px;
+            }
+
+            .project-header {
+                gap: 12px;
+            }
+
+            .project-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                border-radius: 12px;
+            }
+
+            .project-title h2 {
+                font-size: 1.15rem;
+            }
+
+            .tech-badge {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 12px 8px;
+            }
+
+            .page {
+                border-radius: 16px;
+            }
+
+            .hero {
+                padding: 16px 12px 12px;
+            }
+
+            .hero-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .badge {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .btn {
+                padding: 9px 12px;
+                font-size: 0.8rem;
+            }
+
+            .hero-actions {
+                width: 100%;
+                flex-direction: column;
+                margin-top: 12px;
+            }
+
+            .content {
+                padding: 14px;
+                gap: 14px;
+            }
+
+            .projects-grid {
+                gap: 14px;
+            }
+
+            .project-card {
+                padding: 14px;
+            }
+
+            .project-header {
+                gap: 10px;
+            }
+
+            .project-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+
+            .project-title h2 {
+                font-size: 1rem;
+            }
+
+            .project-date {
+                font-size: 0.75rem;
+            }
+
+            .project-description {
+                font-size: 0.9rem;
+            }
+
+            .tech-badge {
+                font-size: 0.7rem;
+                padding: 5px 10px;
+            }
+
+            .project-link {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <section class="hero">
+            <div class="hero-top">
+                <div class="badge"><i class="fa-solid fa-code-branch"></i></div>
+                <div>
+                    <h1>My Projects</h1>
+                    <p>Portfolio of my work and projects that showcase my skills and creativity</p>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="index.html" class="btn btn-primary"><i class="fa-solid fa-house"></i> Back to Home</a>
+                <a href="about.html" class="btn btn-secondary"><i class="fa-solid fa-user"></i> About Me</a>
+                <a href="skills.html" class="btn btn-secondary"><i class="fa-solid fa-brain"></i> Skills</a>
+                <a href="contact.html" class="btn btn-secondary"><i class="fa-solid fa-envelope"></i> Contact</a>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <div class="project-title">
+                            <h2>Portfolio / Personal Showcase</h2>
+                            <div class="project-date"><i class="fa-solid fa-calendar"></i> 2024 - Present</div>
+                        </div>
+                    </div>
+
+                    <p class="project-description">
+                        An interactive personal website developed and hosted via GitHub Pages, designed to showcase programming skills, completed projects, and professional networking methods with a modern, responsive design compatible with all screen sizes.
+                    </p>
+
+                    <div class="project-technologies">
+                        <div class="tech-badge"><i class="fa-brands fa-html5"></i> HTML5</div>
+                        <div class="tech-badge"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
+                        <div class="tech-badge"><i class="fa-brands fa-js"></i> JavaScript</div>
+                        <div class="tech-badge"><i class="fa-brands fa-github"></i> GitHub Pages</div>
+                    </div>
+
+                    <div class="project-actions">
+                        <a href="https://aonyadel1-gif.github.io/My-Portfolio/" target="_blank" class="project-link">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Project
+                        </a>
+                        <a href="https://github.com/aonyadel1-gif/My-Portfolio" target="_blank" class="project-link">
+                            <i class="fa-brands fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>More projects coming soon...</p>
+        </div>
+    </div>
+    <script src="theme.js"></script>
+</body>
+</html>

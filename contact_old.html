@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aony Adel - Contact</title>
+    <link rel="stylesheet" href="theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Readex+Pro:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- أيکانات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* إعدادات عامة */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', 'Tajawal', 'Readex Pro', sans-serif;
+        }
+
+        body {
+            position: relative;
+            background-color: #080b13;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+            background-size: 550px 550px, 350px 350px;
+            background-position: 0 0, 40px 60px;
+            color: #ffffff;
+            min-height: 100vh;
+            padding-bottom: 50px;
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
+            animation: drift 10s ease-in-out infinite alternate;
+        }
+
+        body::before {
+            top: -80px;
+            left: -70px;
+            background: rgba(99, 102, 241, 0.25);
+        }
+
+        body::after {
+            bottom: -100px;
+            right: -70px;
+            background: rgba(56, 189, 248, 0.22);
+            animation-duration: 12s;
+        }
+
+        /* شريط الملاحة (Navbar) */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(8, 11, 19, 0.8);
+            backdrop-filter: blur(14px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #6366f1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1, #38bdf8);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hire-btn {
+            background-color: #6366f1;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .hire-btn:hover {
+            background-color: #4f46e5;
+        }
+
+        /* الحاوية الرئيسية */
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .main-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .main-title h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .main-title p {
+            color: #9ca3af;
+            font-size: 15px;
+        }
+
+        .divider {
+            width: 50px;
+            height: 3px;
+            background-color: #6366f1;
+            margin: 10px auto 15px;
+            border-radius: 2px;
+        }
+
+        /* كروت ومعلومات الاتصال */
+        .card {
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(15, 23, 42, 0.7);
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+            backdrop-filter: blur(10px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(99, 102, 241, 0.32);
+            background: rgba(30, 41, 59, 0.7);
+        }
+
+        .info-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
+
+        .info-item:hover .info-icon {
+            transform: rotate(8deg) scale(1.05);
+            color: #38bdf8;
+        }
+
+        .info-text label {
+            display: block;
+            font-size: 11px;
+            color: #6b7280;
+            text-align: right;
+        }
+
+        .info-text span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #e5e7eb;
+        }
+
+        /* نموذج إرسال الرسالة */
+        .form-group {
+            margin-bottom: 16px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #d1d5db;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(15, 23, 42, 0.9);
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #6366f1, #38bdf8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 14px 24px rgba(99, 102, 241, 0.22);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-120%);
+            transition: transform 0.6s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 32px rgba(99, 102, 241, 0.28);
+        }
+
+        .submit-btn:hover::before {
+            transform: translateX(120%);
+        }
+
+        .main-title h1 {
+            animation: fadeUp 0.7s ease both;
+            text-shadow: 0 10px 24px rgba(99, 102, 241, 0.18);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes drift {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(25px, 20px) scale(1.08); }
+        }
+    </style>
+    <style>
+        body {
+            background:
+                radial-gradient(circle at top left, rgba(99, 102, 241, 0.18), transparent 22%),
+                radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.18), transparent 28%),
+                linear-gradient(180deg, #070d19 0%, #0f172a 100%);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        nav {
+            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+        }
+
+        .nav-links a {
+            font-weight: 700;
+        }
+
+        .card {
+            border-radius: 22px;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 18px 40px rgba(2, 6, 23, 0.22);
+        }
+
+        .card-title,
+        .main-title h1 {
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        .submit-btn {
+            font-weight: 800;
+            letter-spacing: 0.01em;
+        }
+
+        .info-item {
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            border-radius: 14px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الشريط العلوي -->
+    <nav>
+        <div class="logo">Aony<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="contact.html" class="hire-btn">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- العنوان الرئيسي -->
+        <div class="main-title">
+            <h1>Contact with Aony</h1>
+            <div class="divider"></div>
+            <p>Have a project in mind? Let's connect!</p>
+        </div>
+
+        <!-- كارت معلومات الاتصال -->
+        <div class="card">
+            <h2 class="card-title" style="text-align: right;">Contact Information</h2>
+            <div class="info-list">
+                
+                <a class="info-item" href="mailto:aonyadel1@gmail.com">
+                    <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
+                    <div class="info-text">
+                        <label>Email</label>
+                        <span>aonyadel1@gmail.com</span>
+                    </div>
+                </a>
+
+                <a class="info-item" href="tel:01141955869">
+                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="info-text">
+                        <label>Phone</label>
+                        <span>01141955869</span>
+                    </div>
+                </a>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="info-text">
+                        <label>Faculty</label>
+                        <span>Business Information Systems</span>
+                    </div>
+                </div>
+
+                <a class="info-item" href="https://www.linkedin.com/in/aony-adel-8b6357357" target="_blank">
+                    <div class="info-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                    <div class="info-text">
+                        <label>LinkedIn</label>
+                        <span>Aony Adel</span>
+                    </div>
+                </a>
+
+                <a class="info-item" href="https://www.facebook.com/share/18vVpBsm2V/" target="_blank">
+                    <div class="info-icon"><i class="fa-brands fa-facebook-f"></i></div>
+                    <div class="info-text">
+                        <label>Facebook</label>
+                        <span>Aony Adel</span>
+                    </div>
+                </a>
+
+                
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info-text">
+                        <label>Location</label>
+                        <span>Assiut, Egypt</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- كارت نموذج إرسال الرسالة -->
+        <div class="card">
+            <h2 class="card-title" style="text-align: right;">Send a Message</h2>
+            <form action="https://formsubmit.co/aonyadel1@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="New Contact Message from Website">
+                <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input id="name" type="text" name="name" placeholder="Your Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input id="email" type="email" name="email" placeholder="Your Email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Message" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fa-regular fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="theme.js"></script>
+    <script>
+        // Replace the value below with your Formspree endpoint, e.g. https://formspree.io/f/abcde
+        const FORM_ENDPOINT = 'https://formspree.io/f/yourFormID';
+
+        async function handleSubmit(e){
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!FORM_ENDPOINT || FORM_ENDPOINT.includes('yourFormID')) {
+                const to = 'aonyadel1@gmail.com';
+                const subject = encodeURIComponent('Website Contact from ' + name);
+                const body = encodeURIComponent('Name: ' + name + "\nEmail: " + email + "\n\nMessage:\n" + message);
+                window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+                return;
+            }
+
+            const formData = new URLSearchParams();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('message', message);
+
+            try {
+                const res = await fetch(FORM_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: formData
+                });
+
+                if (res.ok) {
+                    alert('تم إرسال الرسالة بنجاح — شكراً لك!');
+                    e.target.reset();
+                } else {
+                    const data = await res.json().catch(() => ({}));
+                    alert('حدث خطأ: ' + (data.error || 'حاول مرة أخرى لاحقًا'));
+                }
+            } catch (err) {
+                alert('خطأ في الاتصال. تحقق من إعدادات الإنترنت أو من endpoint الخاص بك.');
+            }
+        }
+    </script>
+</body>
+</html>

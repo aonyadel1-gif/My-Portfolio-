@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Skills | Aony Adel</title>
+    <link rel="stylesheet" href="theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700;800&family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0F172A;
+            --surface: #1E293B;
+            --surface-soft: rgba(30, 41, 59, 0.95);
+            --text: #E2E8F0;
+            --text-muted: #94A3B8;
+            --accent: #38BDF8;
+            --accent-dark: #0EA5E9;
+            --border: rgba(255, 255, 255, 0.08);
+            --radius: 20px;
+            --shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Readex Pro', 'Tajawal', sans-serif;
+        }
+
+        body {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0B1121 0%, #0F172A 100%);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.24;
+            z-index: 0;
+            pointer-events: none;
+            animation: drift 10s ease-in-out infinite alternate;
+        }
+
+        body::before {
+            top: -90px;
+            left: -90px;
+            background: rgba(56, 189, 248, 0.24);
+        }
+
+        body::after {
+            bottom: -110px;
+            right: -80px;
+            background: rgba(124, 58, 237, 0.22);
+            animation-duration: 12s;
+        }
+
+        .page {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            isolation: isolate;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(120deg, rgba(56, 189, 248, 0.12), transparent 35%, rgba(255, 255, 255, 0.08) 55%, transparent 75%);
+            transform: translateX(-120%);
+            transition: transform 0.8s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .page:hover::before {
+            transform: translateX(120%);
+        }
+
+        .hero,
+        .content,
+        .footer,
+        .card,
+        .badge,
+        .btn {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            padding: 36px 32px 28px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(56, 189, 248, 0.08));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .badge {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38BDF8, #0EA5E9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-120%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 30px rgba(56, 189, 248, 0.18);
+        }
+
+        .btn:hover::before {
+            transform: translateX(120%);
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            animation: fadeUp 0.7s ease both;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.16);
+        }
+
+        .highlight {
+            animation-delay: 0.1s;
+        }
+
+        .footer {
+            animation: fadeUp 0.9s ease both;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes drift {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(30px, 20px) scale(1.08); }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Readex Pro', 'Tajawal', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0B1121 0%, #0F172A 100%);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .hero {
+            padding: 36px 32px 28px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(56, 189, 248, 0.08));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38BDF8, #0EA5E9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 2.6rem);
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            line-height: 1.75;
+            max-width: 720px;
+            margin-top: 12px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #38BDF8, #0EA5E9);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .content {
+            padding: 32px;
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--surface-soft);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.14);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.16);
+        }
+
+        .card h2 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .card ul {
+            padding-right: 18px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: rgba(56, 189, 248, 0.08);
+            border-color: rgba(56, 189, 248, 0.16);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 18px 24px 28px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 780px) {
+            body {
+                padding: 24px 14px;
+            }
+
+            .hero {
+                padding: 28px 22px 22px;
+            }
+
+            .content {
+                padding: 26px;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .page {
+                border-radius: 20px;
+            }
+
+            .hero-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-actions {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+    <style>
+        body {
+            background:
+                radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 22%),
+                radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.18), transparent 28%),
+                linear-gradient(180deg, #07111f 0%, #0b1220 45%, #111827 100%);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .page {
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 18px 50px rgba(2, 6, 23, 0.28);
+        }
+
+        .hero {
+            padding: 28px 30px 22px;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        .btn {
+            font-weight: 800;
+            padding: 12px 18px;
+            letter-spacing: 0.01em;
+        }
+
+        .content {
+            padding: 30px;
+            gap: 22px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: 20px;
+            box-shadow: 0 14px 35px rgba(2, 6, 23, 0.18);
+            border-top: 3px solid rgba(56, 189, 248, 0.4);
+        }
+
+        .card h2 {
+            font-weight: 800;
+            color: #f8fafc;
+        }
+
+        .card ul,
+        .card p {
+            font-weight: 600;
+            line-height: 1.8;
+        }
+
+        .footer {
+            padding: 20px 24px 26px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <section class="hero">
+            <div class="hero-top">
+                <div class="badge"><i class="fa-solid fa-brain"></i></div>
+                <div>
+                    <h1>My Skills</h1>
+                    <p>I have developed a balance of technical and personal skills that help me grow in both academic and professional life.</p>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="index.html" class="btn btn-primary"><i class="fa-solid fa-house"></i> Back to Home</a>
+                <a href="about.html" class="btn btn-secondary"><i class="fa-solid fa-user"></i> About Me</a>
+                <a href="contact.html" class="btn btn-secondary"><i class="fa-solid fa-envelope"></i> Contact Me</a>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="grid">
+                <div class="card">
+                    <h2>Computer Skills</h2>
+                    <ul>
+                        <li>Microsoft Office (Word, Excel, PowerPoint)</li>
+                        <li>Front End basics with HTML and CSS</li>
+                        <li>Back End basics and logical problem solving</li>
+                        <li>Basic presentation and communication through technology</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2>Soft Skills</h2>
+                    <ul>
+                        <li>Communication and teamwork</li>
+                        <li>Time management and responsibility</li>
+                        <li>Adaptability and quick learning</li>
+                        <li>Leadership and self-confidence</li>
+                        <li>Professional behavior and commitment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card highlight">
+                <h2>Summary</h2>
+                <p>I believe that strong technical skills and strong personal skills together create a successful and reliable professional personality.</p>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>Designed for a personal and professional profile</p>
+        </div>
+    </div>
+    <script src="theme.js"></script>
+</body>
+</html>

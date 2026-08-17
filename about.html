@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Aony Adel</title>
+    <link rel="stylesheet" href="theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700;800&family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0F172A;
+            --surface: #1E293B;
+            --surface-soft: rgba(30, 41, 59, 0.95);
+            --text: #E2E8F0;
+            --text-muted: #94A3B8;
+            --accent: #38BDF8;
+            --accent-dark: #0EA5E9;
+            --border: rgba(255, 255, 255, 0.08);
+            --radius: 20px;
+            --shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Readex Pro', 'Tajawal', sans-serif;
+        }
+
+        body {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0B1121 0%, #0F172A 100%);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.28;
+            z-index: 0;
+            pointer-events: none;
+            animation: drift 10s ease-in-out infinite alternate;
+        }
+
+        body::before {
+            top: -90px;
+            left: -80px;
+            background: rgba(56, 189, 248, 0.28);
+        }
+
+        body::after {
+            bottom: -110px;
+            right: -90px;
+            background: rgba(124, 58, 237, 0.26);
+            animation-duration: 12s;
+        }
+
+        .page {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            isolation: isolate;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(120deg, rgba(56, 189, 248, 0.12), transparent 35%, rgba(255, 255, 255, 0.08) 55%, transparent 75%);
+            transform: translateX(-120%);
+            transition: transform 0.8s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .page:hover::before {
+            transform: translateX(120%);
+        }
+
+        .hero,
+        .content,
+        .footer,
+        .card,
+        .interest,
+        .badge,
+        .btn {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            padding: 36px 32px 28px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(56, 189, 248, 0.08));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .badge {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38BDF8, #0EA5E9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-120%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 30px rgba(56, 189, 248, 0.18);
+        }
+
+        .btn:hover::before {
+            transform: translateX(120%);
+        }
+
+        .card,
+        .interest {
+            position: relative;
+            overflow: hidden;
+            animation: fadeUp 0.7s ease both;
+        }
+
+        .card::before,
+        .interest::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before,
+        .interest:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.16);
+        }
+
+        .interest:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.18);
+        }
+
+        .footer {
+            animation: fadeUp 0.9s ease both;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes drift {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(30px, 20px) scale(1.08); }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Readex Pro', 'Tajawal', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero {
+            padding: 28px 30px 22px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(124, 58, 237, 0.05));
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.22);
+            flex-shrink: 0;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 800;
+            color: #fff;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+            letter-spacing: 0.01em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-2));
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(56, 189, 248, 0.12);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .content {
+            padding: 30px;
+            display: grid;
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.24);
+        }
+
+        .card h2 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            color: var(--text-color);
+            font-weight: 800;
+        }
+
+        .card p,
+        .card li {
+            color: var(--muted);
+            line-height: 1.8;
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .interest {
+            padding: 20px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .interest:hover {
+            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.16);
+        }
+
+        .interest i {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .interest h3 {
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 800;
+        }
+
+        .interest p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 24px 26px;
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-weight: 700;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                border-radius: 20px;
+            }
+
+            .hero {
+                padding: 22px 20px 18px;
+            }
+
+            .hero-top {
+                gap: 12px;
+            }
+
+            .badge {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+
+            .btn {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+
+            .hero-actions {
+                margin-top: 16px;
+                gap: 8px;
+            }
+
+            .content {
+                padding: 20px;
+                gap: 18px;
+            }
+
+            .card {
+                padding: 18px;
+                border-radius: 16px;
+            }
+
+            .card h2 {
+                font-size: 1.15rem;
+                margin-bottom: 10px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 12px 8px;
+            }
+
+            .page {
+                border-radius: 16px;
+            }
+
+            .hero {
+                padding: 16px 12px 12px;
+            }
+
+            .hero-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .badge {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .btn {
+                padding: 9px 12px;
+                font-size: 0.8rem;
+            }
+
+            .hero-actions {
+                width: 100%;
+                flex-direction: column;
+                margin-top: 12px;
+            }
+
+            .content {
+                padding: 14px;
+                gap: 14px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .card h2 {
+                font-size: 1rem;
+            }
+
+            .interest {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <section class="hero">
+            <div class="hero-top">
+                <div class="badge"><i class="fa-solid fa-user"></i></div>
+                <div>
+                    <h1>About Me</h1>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="index.html" class="btn btn-primary"><i class="fa-solid fa-house"></i> Back to Home</a>
+                <a href="skills.html" class="btn btn-secondary"><i class="fa-solid fa-brain"></i> My Skills</a>
+                <a href="projects.html" class="btn btn-secondary"><i class="fa-solid fa-code-branch"></i> Projects</a>
+                <a href="contact.html" class="btn btn-secondary"><i class="fa-solid fa-envelope"></i> Contact Me</a>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="card">
+                <h2>Who I Am</h2>
+                <p>I am Aony Adel Fahim Mikhael, a person who enjoys exploring new ideas and developing my skills in a professional and personal way. I believe that learning and consistency are the key to success.</p>
+            </div>
+
+            <div class="grid">
+                <div class="interest">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h3>Front-End</h3>
+                    <p>I am interested in creating beautiful and interactive user interfaces with modern web design.</p>
+                </div>
+                <div class="interest">
+                    <i class="fa-solid fa-server"></i>
+                    <h3>Back-End</h3>
+                    <p>I also enjoy working on the logic and server side of applications and learning how systems work smoothly.</p>
+                </div>
+                <div class="interest">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <h3>Teaching</h3>
+                    <p>I hope to become a teaching assistant at the faculty and share knowledge with others.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>My Goals</h2>
+                <ul>
+                    <li>Improve my skills in Front-End and Back-End development.</li>
+                    <li>Build strong projects that reflect my creativity and ability.</li>
+                    <li>Become a helpful teaching assistant in my faculty.</li>
+                    <li>Keep learning and growing in both technology and life.</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>Designed with care for a personal and professional profile</p>
+        </div>
+    </div>
+    <script src="theme.js"></script>
+</body>
+</html>
