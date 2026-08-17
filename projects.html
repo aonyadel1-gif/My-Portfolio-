@@ -122,7 +122,7 @@
             border-radius: 20px;
             padding: 28px;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
-            transition: transform 0.25s ease, border-color 0.25s ease;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -131,6 +131,7 @@
         .project-card:hover {
             transform: translateY(-6px);
             border-color: rgba(56, 189, 248, 0.24);
+            box-shadow: 0 16px 40px rgba(56, 189, 248, 0.1);
         }
 
         .project-header {
@@ -159,21 +160,62 @@
 
         .project-title h2 {
             font-size: 1.4rem;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
             color: var(--text-color);
             font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
         }
 
         .project-date {
-            font-size: 0.85rem;
             color: var(--accent-color);
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .project-status {
+            color: var(--muted);
+            font-weight: 600;
         }
 
         .project-description {
             color: var(--muted);
             line-height: 1.8;
             font-weight: 600;
+        }
+
+        .project-features {
+            background: rgba(56, 189, 248, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 14px 16px;
+            border-radius: 8px;
+        }
+
+        .project-features h4 {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .project-features ul {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-weight: 600;
+            margin-left: 20px;
+        }
+
+        .project-features li {
+            margin-bottom: 4px;
         }
 
         .project-technologies {
@@ -193,6 +235,11 @@
             color: var(--accent-color);
             font-size: 0.85rem;
             font-weight: 700;
+            transition: transform 0.25s ease;
+        }
+
+        .tech-badge:hover {
+            transform: scale(1.05);
         }
 
         .tech-badge i {
@@ -224,23 +271,7 @@
         .project-link:hover {
             transform: translateY(-2px);
             background: rgba(56, 189, 248, 0.16);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 28px;
-        }
-
-        .section-title h2 {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-            color: var(--text-color);
-            font-weight: 800;
-        }
-
-        .section-title p {
-            color: var(--muted);
-            font-weight: 600;
+            border-color: rgba(56, 189, 248, 0.4);
         }
 
         .footer {
@@ -382,12 +413,24 @@
                 font-size: 1rem;
             }
 
-            .project-date {
+            .project-meta {
                 font-size: 0.75rem;
             }
 
             .project-description {
                 font-size: 0.9rem;
+            }
+
+            .project-features {
+                padding: 12px 14px;
+            }
+
+            .project-features h4 {
+                font-size: 0.8rem;
+            }
+
+            .project-features ul {
+                font-size: 0.85rem;
             }
 
             .tech-badge {
@@ -399,10 +442,6 @@
                 padding: 8px 12px;
                 font-size: 0.8rem;
             }
-
-            .section-title h2 {
-                font-size: 1.4rem;
-            }
         }
     </style>
 </head>
@@ -413,7 +452,7 @@
                 <div class="badge"><i class="fa-solid fa-code-branch"></i></div>
                 <div>
                     <h1>My Projects</h1>
-                    <p>Portfolio of my work and projects that showcase my skills and creativity</p>
+                    <p>A showcase of my work and projects demonstrating my skills and passion for development</p>
                 </div>
             </div>
 
@@ -433,20 +472,35 @@
                             <i class="fa-solid fa-globe"></i>
                         </div>
                         <div class="project-title">
-                            <h2>Portfolio / Personal Showcase</h2>
-                            <div class="project-date"><i class="fa-solid fa-calendar"></i> 2024 - Present</div>
+                            <h2>Personal Portfolio Website</h2>
+                            <div class="project-meta">
+                                <span class="project-date"><i class="fa-solid fa-calendar"></i> 2026 - Present</span>
+                                <span class="project-status">Actively Maintained</span>
+                            </div>
                         </div>
                     </div>
 
                     <p class="project-description">
-                        An interactive personal website developed and hosted via GitHub Pages, designed to showcase programming skills, completed projects, and professional networking methods with a modern, responsive design compatible with all screen sizes.
+                        An interactive personal portfolio website developed and hosted via GitHub Pages, designed to showcase programming skills, completed projects, and professional networking opportunities with a modern, fully responsive design compatible with all screen sizes and devices.
                     </p>
+
+                    <div class="project-features">
+                        <h4><i class="fa-solid fa-star"></i> Key Features</h4>
+                        <ul>
+                            <li>Interactive dark/light theme toggle with system preference detection</li>
+                            <li>Fully responsive design optimized for desktop, tablet, and mobile</li>
+                            <li>Smooth animations and hover effects for better user experience</li>
+                            <li>Clean, modern UI with professional color scheme</li>
+                            <li>Multiple pages for comprehensive profile presentation</li>
+                        </ul>
+                    </div>
 
                     <div class="project-technologies">
                         <div class="tech-badge"><i class="fa-brands fa-html5"></i> HTML5</div>
                         <div class="tech-badge"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
                         <div class="tech-badge"><i class="fa-brands fa-js"></i> JavaScript</div>
                         <div class="tech-badge"><i class="fa-brands fa-github"></i> GitHub Pages</div>
+                        <div class="tech-badge"><i class="fa-solid fa-mobile"></i> Responsive</div>
                     </div>
 
                     <div class="project-actions">
@@ -462,7 +516,7 @@
         </section>
 
         <div class="footer">
-            <p>More projects coming soon...</p>
+            <p>More exciting projects coming soon! Stay tuned...</p>
         </div>
     </div>
     <script src="theme.js"></script>
